@@ -1,0 +1,87 @@
+<app-header></app-header>
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <button routerLink="/list" mat-raised-button color="accent">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+      Back to List
+    </button>
+  </div>
+</div>
+<div class="container mt-5">
+  <mat-card *ngIf="employeeDetails" class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title
+        >{{ employeeDetails.firstName }}
+        {{ employeeDetails.lastName }}</mat-card-title
+      >
+      <mat-card-subtitle>{{ employeeDetails.mobileNr }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <div matLine>
+            <b>Gender:</b>
+            <button mat-button>{{ employeeDetails.gender }}</button>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine>
+            <b>Date of Birth:</b>
+            <button mat-button>{{ employeeDetails.dateOfBirth | date }}</button>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine>
+            <b>Payment Mode:</b>
+            <button mat-button>{{ employeeDetails.paymentMode }}</button>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine>
+            <b>Address:</b>
+            <button mat-button>{{ employeeDetails.address }}</button>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine>
+            <b>Date Of Joining:</b>
+            <button mat-button>
+              {{ employeeDetails.dateOfJoining | date }}
+            </button>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine>
+            <b>Trainer Experts In Vocals:</b>
+            <button mat-button>
+              <mat-chip-listbox aria-label="Trainer Experts">
+                <ng-container *ngFor="let vocals of employeeDetails.vocals">
+                  <mat-chip-option selected color="warn">{{
+                    vocals
+                  }}</mat-chip-option>
+                </ng-container>
+              </mat-chip-listbox>
+            </button>
+          </div>
+        </mat-list-item>
+        <mat-list-item>
+          <div matLine>
+            <b>Trainer Experts In Instruments:</b>
+            <button mat-button>
+              <mat-chip-listbox aria-label="Trainer Experts">
+                <ng-container
+                  *ngFor="let instrument of employeeDetails.instruments"
+                >
+                  <mat-chip-option selected color="accent">{{
+                    instrument
+                  }}</mat-chip-option>
+                </ng-container>
+              </mat-chip-listbox>
+            </button>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,169 @@
+<app-header></app-header>
+<h1 class="text-center page-header">Trainer Registration Form</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+  </div>
+  <div class="registration-form m-3 p-4">
+    <form [formGroup]="registerForm">
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input
+              formControlName="firstName"
+              matInput
+              placeholder="First Name"
+              [class.is-invalid]="firstName?.touched && firstName?.invalid"
+            />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input
+              formControlName="lastName"
+              matInput
+              placeholder="Last Name"
+            />
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="div col-md-6">
+          <label id="example-radio-group-label">Select your gender</label>
+          <mat-radio-group formControlName="gender" class="example-radio-group">
+            <mat-radio-button
+              class="example-radio-button"
+              *ngFor="let gender of gender"
+              [value]="gender"
+            >
+              {{ gender }}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Date Of Birth</mat-label>
+            <input
+              formControlName="dateOfBirth"
+              matInput
+              [matDatepicker]="dateOfBirth"
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="dateOfBirth"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dateOfBirth></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="div col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Vocals</mat-label>
+            <mat-select formControlName="vocals" name="vocals" multiple>
+              <mat-option *ngFor="let vocal of vocals" [value]="vocal">
+                {{ vocal }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="div col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Instruments</mat-label>
+            <mat-select
+              formControlName="instruments"
+              name="instruments"
+              multiple
+            >
+              <mat-option
+                *ngFor="let instrument of instruments"
+                [value]="instrument"
+              >
+                {{ instrument }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="div col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Select payment mode</mat-label>
+            <mat-select formControlName="paymentMode" name="paymentMode">
+              <mat-option
+                *ngFor="let paymentMode of paymentModes"
+                [value]="paymentMode"
+              >
+                {{ paymentMode }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Date of Joining</mat-label>
+            <input
+              formControlName="dateOfJoining"
+              matInput
+              [matDatepicker]="dateOfJoining"
+            />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="dateOfJoining"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #dateOfJoining></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <textarea formControlName="address" matInput></textarea>
+            <mat-icon matSuffix> location_on</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="outline">
+            <mat-label>Mobile Number</mat-label>
+            <input
+              formControlName="mobileNr"
+              type="number"
+              matInput
+              placeholder="Mobile Number"
+            />
+            <mat-icon matSuffix> mobile_screen_share</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row text-center">
+    <div class="col-md-12">
+      <button
+        *ngIf="!isUpdateActive"
+        (click)="onSubmit()"
+        mat-raised-button
+        color="accent"
+      >
+        Submit
+      </button>
+      <div class="col-md-12">
+        <button
+          *ngIf="isUpdateActive"
+          mat-raised-button
+          color="accent"
+          (click)="onUpdate()"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
